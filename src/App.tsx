@@ -79,23 +79,29 @@ function App() {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen items-center justify-center container mx-auto">
-      {error && <div className="text-red-500 mb-4">{error}</div>}
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <WeatherDisplay
-          weatherData={weatherData}
-          airpollutionData={airpollutionData}
+    <div className="min-h-screen p-8">
+      <div>
+        {error && (
+          <div className="bg-red-100/90 rounded-md p-4 mb-4 text-center text-red-600">
+            {error}
+          </div>
+        )}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <WeatherDisplay
+            weatherData={weatherData}
+            airpollutionData={airpollutionData}
+          />
+        )}
+        <SearchBar onSearch={(city) => handleSearch({ city })} />
+        <CityButton
+          city={defaultCities}
+          onCitySelect={handleCitySelect}
+          currentCity={weatherData?.name}
+          isCurrent={isCurrentLocation}
         />
-      )}
-      <SearchBar onSearch={(city) => handleSearch({ city })} />
-      <CityButton
-        city={defaultCities}
-        onCitySelect={handleCitySelect}
-        currentCity={weatherData?.name}
-        isCurrent={isCurrentLocation}
-      />
+      </div>
     </div>
   );
 }
