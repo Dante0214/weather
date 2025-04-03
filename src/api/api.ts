@@ -25,7 +25,7 @@ export const getAirPollutionData = async (
   lat: number
 ): Promise<AirPollutionData> => {
   const response = await axios.get(
-    "http://api.openweathermap.org/data/2.5/air_pollution",
+    "https://api.openweathermap.org/data/2.5/air_pollution",
     {
       params: {
         lon: lon,
