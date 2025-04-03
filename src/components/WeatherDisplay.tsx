@@ -12,7 +12,8 @@ const WeatherDisplay = ({
   if (!weatherData) {
     return null;
   }
-  const getAirQualityText = (aqi: number) => {
+  const getAirQualityText = (aqi: number | undefined) => {
+    if (!aqi) return "정보없음";
     const quality = ["매우좋음", "좋음", "보통", "나쁨", "매우나쁨"];
     return quality[aqi - 1] || "정보없음";
   };
